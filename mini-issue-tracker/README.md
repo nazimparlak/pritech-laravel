@@ -1,58 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini Issue Tracker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, fast, and responsive Mini Issue Tracker application built with **Laravel** and **Tailwind CSS**. Designed for small teams to seamlessly manage projects, issues, tags, and comments with interactive, page-reload-free AJAX workflows.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features Implemented
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Core Requirements
+* **Project Management (CRUD):** List, create, edit, and cascade-delete projects. Features an optimized dashboard displaying total issue counts and project status.
+* **Issue Tracking (CRUD):** Complete task lifecycle management with priority states (`low`, `medium`, `high`) and active statuses (`open`, `in_progress`, `closed`).
+* **Asynchronous Tagging (AJAX):** Attach and detach custom-colored tags to any issue directly via interactive inline controls without full page reloads.
+* **Live Commenting (AJAX):** Post and fetch comments asynchronously. Newly added comments instantly prepend to the layout DOM, clearing validation inputs dynamically.
+* **Strict Security & UX:** Built-in server-side protection using custom **Laravel Form Requests**. Form validation failures natively render clear, inline visual warnings rather than browser alert boxes.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Performance & Clean Code
+* **Database Schema Optimization:** Implemented strict relational boundaries (`foreignId` constraints) along with a dedicated alteration migration to introduce flexible project scheduling (`start_date`, `deadline`).
+* **N+1 Query Prevention:** Leveraged Eloquent's eager loading (`with(['issues.tags'])` and `withCount()`) to minimize database roundtrips, maximizing resource delivery speed.
+* **Seeding & Factories:** Ready-to-test setup driven by structured data factories mapping complete inter-table node relationships.
 
-## Learning Laravel
+### ⚡ Bonus Section Completed
+* **Debounce-Optimized Text Search:** Implemented a real-time, asynchronous wildcard query handler on the Issues directory. Integrated a lightweight **300ms JavaScript debounce hook** to seamlessly parse string filters across titles and descriptions without bottlenecking application performance.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Tech Stack
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* **Backend:** Laravel (v13 preferred architecture)
+* **Frontend:** Blade Templates, Vanilla JavaScript (Fetch API)
+* **Styling:** Tailwind CSS (Modern Dark Mode Framework)
+* **Database:** MySQL / MariaDB (Supports SQLite)
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## ⚙️ Installation & Setup Guide
 
+Follow these sequential steps to get the application up and running locally:
+
+### 1. Clone the Repository
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+git clone [https://github.com/nazimparlak/spritech-laravel.git](https://github.com/nazimparlak/spritech-laravel.git)
+cd pritech-laravel
