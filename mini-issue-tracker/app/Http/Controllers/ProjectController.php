@@ -38,7 +38,10 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Projeyi buluyoruz; altındaki issue'ları ve o issue'lara ait etiketleri (tags) eager load ile tek seferde çekiyoruz
+        $project = \App\Models\Project::with(['issues.tags'])->findOrFail($id);
+
+        return view('projects.show', compact('project'));
     }
 
     /**
