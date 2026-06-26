@@ -12,9 +12,39 @@ class IssueController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $issues = Issue::with(['project', 'tags'])->latest()->paginate(20);
+        $query = \App\Models\Issue::with(['project', 'tags']);
+
+        // Filtreler (Zorunlu isterlerde vardı)
+        if (request('status')) {
+            $query->where('status', request('status'));
+        }
+        if (request('priority')) {
+            $query->where('priority', request('priority'));
+        }
+        if (request('tag')) {
+            $query->whereHas('tags', function($q) {
+                $q->where('names', request('tag'));
+            });
+        }
+
+        // BONUS: Metin Arama (Başlık ve Açıklamada)
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $issues = $query->latest()->get();
+
+        // Eğer istek AJAX (fetch) ile geldiyse sadece JSON dönüyoruz
+        if (request()->ajax()) {
+            return response()->json(['issues' => $issues]);
+        }
+
         return view('issues.index', compact('issues'));
     }
 
