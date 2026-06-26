@@ -1,5 +1,3 @@
-<?php
-
 <html lang="tr" class="h-full bg-gray-900 text-gray-100">
 <head>
     <meta charset="UTF-8">

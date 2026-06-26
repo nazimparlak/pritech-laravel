@@ -11,7 +11,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        // Projeleri ve her projeye ait issue'ları N+1 problemi olmaksızın eager load ile çekiyoruz
+        $projects = \App\Models\Project::withCount('issues')->latest()->get();
+
+        return view('projects.index', compact('projects'));
     }
 
     /**
